@@ -124,9 +124,19 @@ export const ImagePreview: React.FC<ImagePreviewProps> = ({ imageSrc, format, br
     };
   }, [imageSrc, format, branding]);
 
+  const downloadImage = () => {
+    const canvas = canvasRef.current;
+    if (canvas) {
+      const link = document.createElement('a');
+      link.download = 'branding-image.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    }
+  };
+
   return (
-    <div className="relative w-full h-full flex items-center justify-center p-4">
-      <canvas 
+    <div className="relative w-full h-full flex flex-col items-center justify-center p-4 space-y-4">
+      <canvas
         id="preview-canvas"
         ref={canvasRef}
         className={`max-w-full max-h-full object-contain shadow-2xl transition-all duration-300 ${format.isCircle ? 'rounded-full border-4 border-[#8CFF00]/20' : 'rounded-sm border border-white/5'}`}
@@ -135,6 +145,12 @@ export const ImagePreview: React.FC<ImagePreviewProps> = ({ imageSrc, format, br
           background: '#000'
         }}
       />
+      <button
+        onClick={downloadImage}
+        className="px-6 py-2 bg-[#8CFF00] text-black font-bold rounded-lg hover:bg-[#7BE600] transition-colors duration-200 shadow-lg"
+      >
+        Download Image
+      </button>
     </div>
   );
 };
