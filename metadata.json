@@ -1,0 +1,5 @@
+{
+  "name": "AutonomousHacks Branding Generator",
+  "description": "Upload your photo and generate branded social media assets for the AutonomousHacks event. Supports various formats including LinkedIn, Instagram, and WhatsApp.",
+  "requestFramePermissions": []
+}
